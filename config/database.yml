@@ -13,8 +13,8 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= Rails.application.credentials.config[:development][:mysql][:username] %>
-  password: <%= Rails.application.credentials.config[:development][:mysql][:password] %>
+  username: eaclaya
+  password: E@lexander2412
   socket: /tmp/mysql.sock
 
 development:
@@ -49,7 +49,5 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: tecnifibre_production
-  username: <%= Rails.application.credentials.config[:production][:mysql][:username] %>
-  password: <%= Rails.application.credentials.config[:production][:mysql][:password] %>
+  <<: *defaul  
+  url: <%= ENV['DATABASE_URL'] %>
