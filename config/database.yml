@@ -49,5 +49,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *defaul  
+  <<: *default  
+  adapter: pg
   url: <%= ENV['DATABASE_URL'] %>
