@@ -1,0 +1,28 @@
+<div id="<%= dom_id player %>" >
+     <div class="px-6 py-4 whitespace-nowrap">
+      <div class="flex items-center shadow-lg">
+        <div class="w-1/2">
+        <% if player.picture.present? %>
+        <%= image_tag player.picture, class: 'w-full max-w-lg' %>
+        <% else %>
+          <%= image_tag image_path('default-player.png'), class: 'w-full max-w-lg mx-auto' %>
+        <% end %>
+        </div>
+        <div class="w-1/2 pl-12">
+            <h2 class="text-sm font-medium text-gray-900 text-2xl"><%= player.name %></h2>
+            <p class="py-4 whitespace-nowrap">Ranking: <%= player.ranking %></p>
+            <p class="py-4 whitespace-nowrap text-sm">Edad: <%= player.age %></p>
+            <p class="py-4 whitespace-nowrap text-sm">Puntos: <%= player.points %></p>
+            <p class="py-4 whitespace-nowrap text-sm">Estatura: <%= player.height %></p>
+            <p class="py-4 whitespace-nowrap text-sm">Peso: <%= player.weight %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+      <% if action_name != "show" %>
+      <%= link_to "Show this player", player, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Edit this player', edit_player_path(player), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <% end %>
+    </div>
+  </div>

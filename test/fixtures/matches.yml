@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  player_one_id: 1
+  player_two_id: 1
+  player_one_game_score: 9.99
+  player_two_game_score: 9.99
+  player_one_set_score: 9.99
+  player_two_set_score: 9.99
+  player_one_match_score: 9.99
+  player_two_match_score: 9.99
+  player_one_name: MyString
+  player_two_name: MyString
+  sets: 9.99
+  games: 9.99
+  date: 2022-02-24
+
+two:
+  player_one_id: 1
+  player_two_id: 1
+  player_one_game_score: 9.99
+  player_two_game_score: 9.99
+  player_one_set_score: 9.99
+  player_two_set_score: 9.99
+  player_one_match_score: 9.99
+  player_two_match_score: 9.99
+  player_one_name: MyString
+  player_two_name: MyString
+  sets: 9.99
+  games: 9.99
+  date: 2022-02-24

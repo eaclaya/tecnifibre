@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tecnifibre</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <main class="flex flex-col">
+    
+
+    <%= render "layouts/navigation" %>
+    
+    <% if notice %>
+      <p class="bg-green-400 text-white px-4 py-2 text-center"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="bg-red-400 text-white px-4 py-2 text-center"><%= alert %></p>
+    <% end %>
+    <div class="p-4">
+        <%= yield %>
+    </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+<div class="w-full">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Torneos</h1>
+    <%= link_to 'Nuevo Torneo', new_tour_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div id="tours" class="min-w-full grid grid-cols-1 md:grid-cols-3 items-end">
+    <%= render @tours %>
+  </div>
+</div>

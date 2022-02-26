@@ -1,0 +1,43 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editar torneo</h1>
+
+  <%= render "form", tour: @tour %>
+
+<div class="flex flex-col" data-controller="participants" x-data>  
+  <div class="my-5 relative">
+    <label>Buscar jugador</label>
+    <input type="text" data-participants-target="name" data-action="keyup->participants#searchByName" class="block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" />
+    <div id="players-wrapper" class="absolute w-full"></div>
+  </div>
+   <input type="hidden" id="_tour" value="<%= @tour.id %>" />
+</div>
+
+  <div class="my-12">
+      <h2 class="text-2xl text-center font-semibold mb-8">Participantes</h2>
+      <%= turbo_stream_from  "participants" %>
+      <%= turbo_frame_tag "participants" do %>
+        <%= render @tour.participants %>
+      <% end %>
+  </div>
+  
+  <%= link_to "Ver torneo", @tour, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  <%= link_to "Regresar a torneos", tours_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+</div>
+
+<script>
+   async function addPlayer(id){
+        const tour_id = document.getElementById('_tour').value
+        const config = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": CSRF_TOKEN
+            },
+            body: JSON.stringify({tour_id: tour_id, player_id: id})
+        };
+        const response = await fetch(`/participants`, config)
+        document.getElementById('players-wrapper').innerHTML = ''
+        
+    }
+</script>

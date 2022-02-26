@@ -1,0 +1,27 @@
+<div class="flex flex-col shadow-md">
+  <p class="m-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= ad.description %>
+  </p>
+
+  <p class="m-5">
+    <strong class="block font-medium mb-1">Type:</strong>
+    <%= ad.ad_type %>
+  </p>
+
+  <div class="flex-1">
+    <% if ad.file.present? %>
+      <% if ad.ad_type == 'Imagen' &&  %>
+        <%= image_tag ad.file, class: 'max-w-md w-full'  %> 
+      <% else %>
+        <%= video_tag url_for(ad.file), controls: '', class: 'max-w-md w-full'  %> 
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this ad", ad, class: "py-3 px-5 bg-gray-100 inline-block font-medium text-center border-b border-gray-200" %>
+    <%= link_to 'Edit this ad', edit_ad_path(ad), class: "py-3 px-5 bg-gray-100 inline-block font-medium text-center" %>
+    
+  <% end %>
+</div>

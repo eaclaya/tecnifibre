@@ -1,0 +1,27 @@
+<tr id="<%= dom_id player %>" >
+    <td class="px-6 py-4 whitespace-nowrap">
+      <%= player.ranking %>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap">
+      <div class="flex items-center">
+        <div class="flex-shrink-0 h-10 w-10">
+        <% if player.picture.present? %>
+        <%= image_tag player.picture, class: 'h-10 w-10 rounded-full' %>
+        <% else %>
+          <%= image_tag image_path('default-player.png'), class: 'h-10 w-10 rounded-full' %>
+        <% end %>
+        </div>
+        <div class="ml-4">
+          <div class="text-sm font-medium text-gray-900"><%= player.name %></div>
+        </div>
+      </div>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= player.age %></td>
+    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= player.points %></td>
+    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+      <% if action_name != "show" %>
+      <%= link_to "Ver", player, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Editar', edit_player_path(player), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <% end %>
+    </td>
+  </tr>

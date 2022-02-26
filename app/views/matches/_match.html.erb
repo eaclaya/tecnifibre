@@ -1,0 +1,72 @@
+<div id="<%= dom_id match %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Player one:</strong>
+    <%= match.player_one_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Player two:</strong>
+    <%= match.player_two_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Player one game score:</strong>
+    <%= match.player_one_game_score %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Player two game score:</strong>
+    <%= match.player_two_game_score %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Player one set score:</strong>
+    <%= match.player_one_set_score %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Player two set score:</strong>
+    <%= match.player_two_set_score %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Player one match score:</strong>
+    <%= match.player_one_match_score %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Player two match score:</strong>
+    <%= match.player_two_match_score %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Player one name:</strong>
+    <%= match.player_one_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Player two name:</strong>
+    <%= match.player_two_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Sets:</strong>
+    <%= match.sets %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Games:</strong>
+    <%= match.games %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date:</strong>
+    <%= match.date %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this match", match, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this match', edit_match_path(match), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
