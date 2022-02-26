@@ -77,5 +77,11 @@ gem "devise", "~> 4.8"
 
 # Use mysql2 as the database for Active Record
 gem "mysql2", "~> 0.5"
-
 gem "hotwire-rails", "~> 0.1.3"
+gem "capistrano", "~> 3.16"
+gem "capistrano-rails", "~> 1.6"
+gem "capistrano-passenger", "~> 0.2.1"
+gem "capistrano-rbenv", "~> 2.2"
+gem 'net-ssh', '>= 6.0.2'
+gem 'ed25519', '>= 1.2', '< 2.0'
+gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'

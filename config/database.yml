@@ -51,5 +51,5 @@ test:
 production:
   <<: *default
   database: tecnifibre_production
-  username: tecnifibre
-  password: <%= ENV["TECNIFIBRE_DATABASE_PASSWORD"] %>
+  username: <%= Rails.application.credentials.config[:production][:mysql][:username] %>
+  password: <%= Rails.application.credentials.config[:production][:mysql][:password] %>
