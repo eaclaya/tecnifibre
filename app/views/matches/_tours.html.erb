@@ -1,0 +1,7 @@
+<div class="flex flex-col">
+    <select name="matches[tour_id]" class="w-full border-gray-200 rounded-md shadow-sm">
+        <% tours.each do |tour| %>
+        <option value="<%= tour.id %>"><%= tour.name %></option>
+        <% end %>
+    </select>
+</div>

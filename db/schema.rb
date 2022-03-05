@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_25_015212) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_01_003931) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,27 +44,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_25_015212) do
     t.string "ad_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_active", default: false
+    t.boolean "is_active", default: true
   end
 
   create_table "matches", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "player_one_id"
     t.integer "player_two_id"
-    t.decimal "player_one_game_score", precision: 12, scale: 2
-    t.decimal "player_two_game_score", precision: 12, scale: 2
-    t.decimal "player_one_set_score", precision: 12, scale: 2
-    t.decimal "player_two_set_score", precision: 12, scale: 2
-    t.decimal "player_one_match_score", precision: 12, scale: 2
-    t.decimal "player_two_match_score", precision: 12, scale: 2
+    t.integer "player_one_game_score"
+    t.integer "player_two_game_score"
+    t.integer "player_one_set_score"
+    t.integer "player_two_set_score"
+    t.integer "player_one_match_score"
+    t.integer "player_two_match_score"
     t.string "player_one_name"
     t.string "player_two_name"
-    t.decimal "sets", precision: 12, scale: 2
-    t.decimal "games", precision: 12, scale: 2
+    t.integer "sets"
+    t.integer "games"
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "tour_id"
     t.index ["player_one_id"], name: "index_matches_on_player_one_id"
     t.index ["player_two_id"], name: "index_matches_on_player_two_id"
+    t.index ["tour_id"], name: "index_matches_on_tour_id"
   end
 
   create_table "participants", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -113,6 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_25_015212) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "matches", "tours"
   add_foreign_key "participants", "players"
   add_foreign_key "participants", "tours"
 end

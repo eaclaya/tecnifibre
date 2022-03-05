@@ -5,10 +5,61 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Matches</h1>
-    <%= link_to 'New match', new_match_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <% if user_signed_in?%>
+        <%= link_to 'New match', new_match_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <% end %>
+  </div>
+  
+  <div class="flex">
+  <div class="flex flex-col" data-controller="matches" x-data>  
+    <div class="my-5 relative">
+      <label>Jugador</label>
+      <input type="text" name="player_one_name" id="player_one_name" data-matches-target="name" data-matches-id-param="players-one-wrapper" data-matches-number-param="1" data-action="keyup->matches#searchByName" class="block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+
+      <div id="players-one-wrapper" class="absolute w-full z-40"></div>
+    </div>
   </div>
 
-  <div id="matches" class="min-w-full">
+  <div class="flex flex-col" data-controller="matches" x-data>  
+    <div class="my-5 relative">
+      <label>Oponente</label>
+      <input type="text" name="player_two_name" id="player_two_name" data-matches-target="name" data-matches-id-param="players-two-wrapper" data-matches-number-param="2" data-action="keyup->matches#searchByName" class="block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full disabled:bg-gray-200" disabled />
+
+      <div id="players-two-wrapper" class="absolute w-full z-40"></div>
+    </div>
+  </div>
+  </div>
+  <div id="matches" class="min-w-full flex flex-col">
     <%= render @matches %>
   </div>
+  
 </div>
+
+
+<script>
+  const data = {}
+  async function selectPlayer(number, id, name){
+    if(number == 1){
+      document.querySelector('#player_one_name').value = name
+      document.querySelector('#players-one-wrapper').innerHTML = ''
+      document.querySelector('#player_two_name').disabled = false
+      data.player_one = id
+    }else{
+      document.querySelector('#player_two_name').value = name
+      document.querySelector('#players-two-wrapper').innerHTML = ''
+      data.player_two = id
+    }
+    const config = {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            "X-CSRF-Token": CSRF_TOKEN
+        },
+        body: JSON.stringify(data)
+    };
+      const response = await fetch('/matches/filter', config)
+      const matches = await response.text()
+      document.querySelector('#matches').innerHTML = matches
+  }
+</script>

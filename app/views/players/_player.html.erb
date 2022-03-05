@@ -1,6 +1,6 @@
 <tr id="<%= dom_id player %>" >
     <td class="px-6 py-4 whitespace-nowrap">
-      <%= player.ranking %>
+      <strong><%= player.ranking %></strong>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
       <div class="flex items-center">
@@ -21,7 +21,9 @@
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
       <% if action_name != "show" %>
       <%= link_to "Ver", player, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= link_to 'Editar', edit_player_path(player), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <% if user_signed_in?%>
+          <%= link_to 'Editar', edit_player_path(player), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <% end %>  
       <% end %>
     </td>
   </tr>

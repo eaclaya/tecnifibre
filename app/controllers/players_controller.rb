@@ -60,11 +60,15 @@ class PlayersController < ApplicationController
   def search_by_name
     name = params[:name]
     players = Player.where('name LIKE ?', "%" + params[:name] + "%")
-    # render partial: "dropdown"
-    render partial: 'players/dropdown', 
-            formats: [:html, :js, :json, :url_encoded_form], 
-            locale: [:en], handlers: [:erb, :builder, :raw, :ruby, :coffee, :jbuilder],
-            locals: {players: players}
+    render partial: 'players/dropdown',  formats: [:html, :js], locals: {players: players}
+  end
+
+  def search_match_player
+    name = params[:name]
+    players = Player.where('name LIKE ?', "%" + params[:name] + "%")
+    respond_to do |format|
+      format.json { render partial: 'players/matches',  formats: [:html, :js], locals: {players: players, number: params[:number]} }
+    end
   end
 
   private

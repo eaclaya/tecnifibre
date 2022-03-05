@@ -1,4 +1,4 @@
-<div id="<%= dom_id tour %>" class="border border-gray-100 shadow-lg mx-2 p-2 rounded-md h-full">
+<div id="<%= dom_id tour %>" class="border border-gray-100 shadow-lg mx-2 mb-4 p-2 rounded-md h-full">
   <p class="my-5">
     <strong class="block font-medium mb-1">Nombre:</strong>
     <%= tour.name %>
@@ -16,7 +16,9 @@
 
   <% if action_name != "show" %>
     <%= link_to "Ver torneo", tour, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Editar tornedo', edit_tour_path(tour), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <% if user_signed_in?%>
+        <%= link_to 'Editar tornedo', edit_tour_path(tour), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <% end %>
     
   <% end %>
 </div>

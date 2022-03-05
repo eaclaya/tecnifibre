@@ -5,11 +5,12 @@
     <% end %>
 
     <%= render 'detail', player: @player %>
-
-    <%= link_to 'Editar', edit_player_path(@player), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2 hidden">
-      <%= button_to 'Destroy this player', player_path(@player), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
+    <% if user_signed_in?%>
+        <%= link_to 'Editar', edit_player_path(@player), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <div class="inline-block ml-2 hidden">
+          <%= button_to 'Destroy this player', player_path(@player), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        </div>
+    <% end %>
     <%= link_to 'Ver Jugadores', players_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>

@@ -1,20 +1,23 @@
 <div class="mx-auto md:w-2/3 w-full flex flex-col mb-8">
-  <div class="mx-auto mb-8">
+  <div class="w-full mb-8">
     <%= render @tour %>
-
-    <%= link_to 'Editar torneo', edit_tour_path(@tour), class: "mt-8 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destruir torneo', tour_path(@tour), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium hidden" %>
-    </div>
+    <% if user_signed_in?%>
+        <%= link_to 'Editar torneo', edit_tour_path(@tour), class: "mt-8 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <div class="inline-block ml-2">
+          <%= button_to 'Destruir torneo', tour_path(@tour), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium hidden" %>
+        </div>
+    <% end %>
     <%= link_to 'Regresar a torneos', tours_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 
   
   <div class="my-12">
       <h2 class="text-2xl text-center font-semibold mb-8">Participantes</h2>
-      <%= turbo_stream_from  "participants" %>
-      <%= turbo_frame_tag "participants" do %>
-        <%= render @tour.participants %>
-      <% end %>
+      <div class="shadow-lg">
+          <%= turbo_stream_from  "participants" %>
+          <%= turbo_frame_tag "participants" do %>
+            <%= render @tour.participants %>
+          <% end %>
+      </div>
   </div>
 </div>

@@ -8,15 +8,18 @@ class MatchesController < ApplicationController
 
   # GET /matches/1 or /matches/1.json
   def show
+    @tours = Tour.all
   end
 
   # GET /matches/new
   def new
     @match = Match.new
+    @tours = Tour.all
   end
 
   # GET /matches/1/edit
   def edit
+    @tours = Tour.all
   end
 
   # POST /matches or /matches.json
@@ -57,6 +60,14 @@ class MatchesController < ApplicationController
     end
   end
 
+  def filter
+    matches = Match.where('player_one_id = ? OR player_two_id = ?', params[:player_one], params[:player_one])
+    matches = matches.where('player_one_id = ? OR player_two_id = ?', params[:player_two], params[:player_two]) if params[:player_two].present?
+    respond_to do |format|
+      # format.json {render :json => matches.count}
+      format.json { render partial: 'matches', formats: [:html, :js], locals: {matches: matches}}
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_match

@@ -1,0 +1,5 @@
+<div class="flex flex-col bg-white shadow-lg rounded-md">
+    <% players.each do |player| %>
+        <div class="px-4 py-2 hover:bg-gray-200 cursor-pointer" onclick="selectPlayer(<%= number %>, <%= player.id %>, '<%= player.name %>')"><%= player.name %></div>    
+    <% end %>
+</div>

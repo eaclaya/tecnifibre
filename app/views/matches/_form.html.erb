@@ -11,72 +11,101 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :player_one_id %>
-    <%= form.number_field :player_one_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <%= render "tours" , tours: @tours %>
+
+  <div class="flex flex-col" data-controller="matches" x-data>  
+    <div class="my-5 relative">
+      <label>Jugador 1</label>
+      
+
+      <%= form.text_field :player_one_name,  'data-matches-target' => "name", 'data-matches-id-param' => "players-one-wrapper",  'data-matches-number-param' => "1",  'data-action' => "keyup->matches#searchByName", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+
+      <div id="players-one-wrapper" class="absolute w-full z-40"></div>
+    </div>
   </div>
 
-  <div class="my-5">
-    <%= form.label :player_two_id %>
-    <%= form.number_field :player_two_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+
+  <div class="flex flex-col" data-controller="matches" x-data>  
+    <div class="my-5 relative">
+      <label>Jugador 2</label>
+      <%= form.text_field :player_two_name,  'data-matches-target' => "name", 'data-matches-id-param' => "players-two-wrapper",  'data-matches-number-param' => "2",  'data-action' => "keyup->matches#searchByName", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+
+      <div id="players-two-wrapper" class="absolute w-full z-40"></div>
+    </div>
   </div>
 
-  <div class="my-5">
+
+  <div class="my-5 hidden">
     <%= form.label :player_one_game_score %>
     <%= form.text_field :player_one_game_score, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5">
+  <div class="my-5 hidden">
     <%= form.label :player_two_game_score %>
     <%= form.text_field :player_two_game_score, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :player_one_set_score %>
-    <%= form.text_field :player_one_set_score, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label 'Jugador 1 (sets ganados)' %>
+    <%= form.text_field :player_one_set_score, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :player_two_set_score %>
-    <%= form.text_field :player_two_set_score, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label 'Jugador 2 (sets ganados)' %>
+    <%= form.text_field :player_two_set_score, required: true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5">
+  <div class="my-5 hidden">
     <%= form.label :player_one_match_score %>
     <%= form.text_field :player_one_match_score, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5">
+  <div class="my-5 hidden">
     <%= form.label :player_two_match_score %>
     <%= form.text_field :player_two_match_score, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :player_one_name %>
-    <%= form.text_field :player_one_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="my-5 hidden">
+    <%= form.label :player_one_id %>
+    <%= form.text_field :player_one_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :player_two_name %>
-    <%= form.text_field :player_two_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  <div class="my-5 hidden">
+    <%= form.label :player_two_id %>
+    <%= form.text_field :player_two_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5">
+  <div class="my-5 hidden">
     <%= form.label :sets %>
     <%= form.text_field :sets, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
-  <div class="my-5">
+  <div class="my-5 hidden">
     <%= form.label :games %>
     <%= form.text_field :games, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :date %>
-    <%= form.date_field :date, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.date_field :date, value: Date.today, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
+
+
+<script>
+  function selectPlayer(number, id, name){
+    if(number == 1){
+      document.querySelector('#match_player_one_name').value = name
+      document.querySelector('#players-one-wrapper').innerHTML = ''
+      document.querySelector('#match_player_one_id').value = id
+    }else{
+      document.querySelector('#match_player_two_name').value = name
+      document.querySelector('#players-two-wrapper').innerHTML = ''
+      document.querySelector('#match_player_two_id').value = id
+    }
+  }
+</script>

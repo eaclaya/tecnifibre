@@ -1,0 +1,69 @@
+<div id="<%= dom_id match %>" class="shadow-lg py-2 my-2">
+    <div class="flex justify-between">
+      <div class="flex flex-col ">
+        <%= image_tag match.player_one.picture, class: 'w-24 md:w-48 max-w-xs mb-4 object-cover object-center' %>
+        <h3 class="text-center text-sm md:text-lg font-semibold"><%= match.player_one_name %></h3>
+      </div>
+
+      <div class="flex flex-row items-center gap-8">
+        <span <% if match.player_one_set_score > match.player_two_set_score %> class="border-2 border-blue-500 text-blue-500 h-12 w-12 md:h-24 md:w-24 text-center shadow-lg text-2xl rounded-full leading-[45px] md:leading-[90px] md:text-4xl" <% else %> class="border-2 border-gray-500 text-gray-500 h-12 w-12 md:h-24 md:w-24 text-center text-2xl rounded-full leading-[45px] md:leading-[90px] md:text-4xl" <% end %> ><%= match.player_one_set_score %></span> 
+        <span <% if match.player_one_set_score < match.player_two_set_score %> class="border-2 border-blue-500 text-blue-500 h-12 w-12 md:h-24 md:w-24 text-center shadow-lg text-2xl rounded-full leading-[45px] md:leading-[90px] md:text-4xl" <% else %> class="border-2 border-gray-500 text-gray-500 h-12 w-12 md:h-24 md:w-24 text-center text-2xl rounded-full leading-[45px] md:leading-[90px] md:text-4xl" <% end %>><%= match.player_two_set_score %></span>
+      </div>
+    
+      <div class="flex flex-col">
+        <%= image_tag match.player_two.picture, class: 'w-24 md:w-48 max-w-xs mb-4 flex-1 object-cover object-center' %>
+        <h3 class="text-center text-sm md:text-lg font-semibold"><%= match.player_two_name %></h3>
+      </div>
+    </div>
+      <p class="my-5 hidden">
+        <strong class="block font-medium mb-1">Player one:</strong>
+        <%= match.player_one_id %>
+      </p>
+    
+      <p class="my-5 hidden">
+        <strong class="block font-medium mb-1">Player two:</strong>
+        <%= match.player_two_id %>
+      </p>
+    
+      <p class="my-5 hidden">
+        <strong class="block font-medium mb-1">Player one game score:</strong>
+        <%= match.player_one_game_score %>
+      </p>
+    
+      <p class="my-5 hidden">
+        <strong class="block font-medium mb-1">Player two game score:</strong>
+        <%= match.player_two_game_score %>
+      </p>
+    
+      <p class="my-5 hidden">
+        <strong class="block font-medium mb-1 hidden">Player one match score:</strong>
+        <%= match.player_one_match_score %>
+      </p>
+    
+      <p class="my-5 hidden">
+        <strong class="block font-medium mb-1 hidden">Player two match score:</strong>
+        <%= match.player_two_match_score %>
+      </p>
+    
+      <p class="my-5 hidden">
+        <strong class="block font-medium mb-1">Sets:</strong>
+        <%= match.sets %>
+      </p>
+    
+      <p class="my-5 hidden">
+        <strong class="block font-medium mb-1">Games:</strong>
+        <%= match.games %>
+      </p>
+    
+      <p class="my-5 text-center text-gray-500">
+        <%= match.date %>
+      </p>
+    
+      <% if action_name != "show" %>
+        <%= link_to "Show this match", match, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <% if user_signed_in?%>
+            <%= link_to 'Edit this match', edit_match_path(match), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+        <% end %>
+      <% end %>
+    </div>
+    
